@@ -18,11 +18,7 @@ export default function Command() {
   }, []);
 
   return (
-    <List
-      isLoading={loading}
-      isShowingDetail
-      searchBarPlaceholder="Select Git scope"
-    >
+    <List isLoading={loading} isShowingDetail searchBarPlaceholder="Select Git scope">
       {profiles.map((profile) => (
         <List.Item
           accessories={[{ text: "scope" }]}
@@ -33,18 +29,10 @@ export default function Command() {
             <List.Item.Detail
               metadata={
                 <List.Item.Detail.Metadata>
-                  <List.Item.Detail.Metadata.Label
-                    title="user.name"
-                    text={profile.name || ""}
-                  />
-                  <List.Item.Detail.Metadata.Label
-                    title="user.email"
-                    text={profile.email || ""}
-                  />
+                  <List.Item.Detail.Metadata.Label title="user.name" text={profile.name || ""} />
+                  <List.Item.Detail.Metadata.Label title="user.email" text={profile.email || ""} />
                   <List.Item.Detail.Metadata.TagList title="scope">
-                    <List.Item.Detail.Metadata.TagList.Item
-                      text={profile.scope}
-                    />
+                    <List.Item.Detail.Metadata.TagList.Item text={profile.scope} />
                   </List.Item.Detail.Metadata.TagList>
                 </List.Item.Detail.Metadata>
               }
