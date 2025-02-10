@@ -52,27 +52,25 @@ export default function Command() {
           </ActionPanel>
         }
       />
-      {
-        data &&
-          data.map((profile) => (
-            <List.Item
-              accessories={[{ text: profile.email }]}
-              key={profile.email}
-              title={profile.name}
-              icon={Icon.Bird}
-              actions={
-                <ActionPanel>
-                  <Action.Push
-                    title="Edit Profile"
-                    target={<ProfileForm id={profile.id} profile={profile} revalidate={revalidate} />}
-                  />
-                  <Action title="Apply Profile" onAction={() => handleSetProfile(profile)} />
-                  <Action title="Delete Profile" onAction={() => handleDeleteProfile(profile)} />
-                </ActionPanel>
-              }
-            />
-          ))
-      }
+      {data &&
+        data.map((profile) => (
+          <List.Item
+            accessories={[{ text: profile.email }]}
+            key={profile.email}
+            title={profile.name}
+            icon={Icon.Bird}
+            actions={
+              <ActionPanel>
+                <Action.Push
+                  title="Edit Profile"
+                  target={<ProfileForm id={profile.id} profile={profile} revalidate={revalidate} />}
+                />
+                <Action title="Apply Profile" onAction={() => handleSetProfile(profile)} />
+                <Action title="Delete Profile" onAction={() => handleDeleteProfile(profile)} />
+              </ActionPanel>
+            }
+          />
+        ))}
     </List>
   );
 }
