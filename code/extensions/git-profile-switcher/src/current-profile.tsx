@@ -1,9 +1,9 @@
 import { execPromise } from "@/lib";
-import { List, Icon } from "@raycast/api";
+import type { Scope } from "@/types";
+import { Icon, List } from "@raycast/api";
 import { useEffect, useState } from "react";
-import { Scope } from "@/types";
 
-type Profile = { scope: Scope; name?: string | null; email?: string | null; };
+type Profile = { scope: Scope; name?: string | null; email?: string | null };
 
 export default function Command() {
   const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -12,33 +12,43 @@ export default function Command() {
   useEffect(() => {
     setLoading(true);
     getProfiles().then((profiles) => {
-      setProfiles([...profiles, { scope: "local", name: "---", email: "---" } ]);
+      setProfiles([...profiles, { scope: "local", name: "---", email: "---" }]);
       setLoading(false);
     });
   }, []);
 
   return (
-    <List isLoading={loading} isShowingDetail searchBarPlaceholder="Select Git scope">
+    <List
+      isLoading={loading}
+      isShowingDetail
+      searchBarPlaceholder="Select Git scope"
+    >
       {profiles.map((profile) => (
         <List.Item
-        accessories={[{ text: "scope" }]}
+          accessories={[{ text: "scope" }]}
           key={profile.scope}
           title={profile.scope}
           icon={Icon.Dot}
           detail={
             <List.Item.Detail
-            metadata={
-              <List.Item.Detail.Metadata>
-                <List.Item.Detail.Metadata.Label title="user.name" text={profile.name || ""} />
-                <List.Item.Detail.Metadata.Label title="user.email" text={profile.email || ""} />
-                <List.Item.Detail.Metadata.TagList title="scope">
-                  <List.Item.Detail.Metadata.TagList.Item
-                    text={profile.scope}
+              metadata={
+                <List.Item.Detail.Metadata>
+                  <List.Item.Detail.Metadata.Label
+                    title="user.name"
+                    text={profile.name || ""}
                   />
-                </List.Item.Detail.Metadata.TagList>
-              </List.Item.Detail.Metadata>
-            }
-          />
+                  <List.Item.Detail.Metadata.Label
+                    title="user.email"
+                    text={profile.email || ""}
+                  />
+                  <List.Item.Detail.Metadata.TagList title="scope">
+                    <List.Item.Detail.Metadata.TagList.Item
+                      text={profile.scope}
+                    />
+                  </List.Item.Detail.Metadata.TagList>
+                </List.Item.Detail.Metadata>
+              }
+            />
           }
         />
       ))}
