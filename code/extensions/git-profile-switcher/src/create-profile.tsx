@@ -12,7 +12,7 @@ export default function Command() {
     async onSubmit(values) {
       const data = await LocalStorage.getItem(values.email);
       if (data !== undefined) {
-        showToast({
+        await showToast({
           style: Toast.Style.Failure,
           title: "Error!",
           message: "The email is already in use.",
@@ -20,7 +20,7 @@ export default function Command() {
         return;
       }
       await setData(values);
-      showToast({
+      await showToast({
         style: Toast.Style.Success,
         title: "Success!",
         message: `${values.name} profile created.`,
