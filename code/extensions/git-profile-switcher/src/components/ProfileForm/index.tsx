@@ -1,14 +1,20 @@
 import { Action, ActionPanel, Form, showToast, Toast, LocalStorage } from "@raycast/api";
 import { useForm, FormValidation } from "@raycast/utils";
 import { setData } from "@/utils";
+import type { Profile } from "@/types";
 
-interface FormValues {
+type ProfileProps = {
+  profile?: Profile;
+};
+
+type FormValues = {
   name: string;
   email: string;
-}
+};
 
-export default function ProfileForm() {
+export default function ProfileForm({ profile }: ProfileProps) {
   const { handleSubmit, itemProps } = useForm<FormValues>({
+    initialValues: profile,
     async onSubmit(values) {
       const data = await LocalStorage.getItem(values.email);
       if (data !== undefined) {
