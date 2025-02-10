@@ -1,40 +1,19 @@
 import { execPromise } from "@/lib";
 import type { Scope } from "@/types";
-import { Icon, List } from "@raycast/api";
+import { List } from "@raycast/api";
 import { usePromise } from "@raycast/utils";
-
-type Profile = { scope: Scope; name?: string | null; email?: string | null };
+import GitProfileListItem, { type Profile } from "@/components/GitProfileListItem";
 
 export default function Command() {
   const { isLoading, data } = usePromise(async () => {
     const profiles = await getProfiles();
-    return [...profiles, { scope: "local", name: "---", email: "---" }];
+    const profile = { scope: "local", name: "---", email: "---" } satisfies Profile;
+    return [...profiles, profile];
   });
 
   return (
     <List isLoading={isLoading} isShowingDetail searchBarPlaceholder="Select Git scope">
-      {data &&
-        data.map((profile) => (
-          <List.Item
-            accessories={[{ text: "scope" }]}
-            key={profile.scope}
-            title={profile.scope}
-            icon={Icon.Bird}
-            detail={
-              <List.Item.Detail
-                metadata={
-                  <List.Item.Detail.Metadata>
-                    <List.Item.Detail.Metadata.Label title="user.name" text={profile.name || ""} />
-                    <List.Item.Detail.Metadata.Label title="user.email" text={profile.email || ""} />
-                    <List.Item.Detail.Metadata.TagList title="scope">
-                      <List.Item.Detail.Metadata.TagList.Item text={profile.scope} />
-                    </List.Item.Detail.Metadata.TagList>
-                  </List.Item.Detail.Metadata>
-                }
-              />
-            }
-          />
-        ))}
+      {data && data.map((profile) => <GitProfileListItem profile={profile} />)}
     </List>
   );
 }
