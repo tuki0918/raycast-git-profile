@@ -12,7 +12,9 @@ export async function setData(value: Profile) {
 
 export async function getData(): Promise<Profile[]> {
   const data = await LocalStorage.allItems<Values>();
-  return Object.values(data).map((v) => JSON.parse(v) as Profile);
+  return Object.values(data)
+    .map((v) => JSON.parse(v) as Profile)
+    .sort((a, b) => a.email.localeCompare(b.email));
 }
 
 export async function deleteData(value: Profile) {
