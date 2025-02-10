@@ -17,12 +17,6 @@
       "mode": "view"
     },
     {
-      "name": "create-profile",
-      "title": "Create Profile",
-      "description": "Create a new Git profile.",
-      "mode": "view"
-    },
-    {
       "name": "list-profiles",
       "title": "List Profiles",
       "description": "List all Git profiles.",
