@@ -14,3 +14,7 @@ export async function getData(): Promise<Profile[]> {
   const data = await LocalStorage.allItems<Values>();
   return Object.values(data).map((v) => JSON.parse(v) as Profile);
 }
+
+export async function deleteData(value: Profile) {
+  await LocalStorage.removeItem(value.email);
+}
