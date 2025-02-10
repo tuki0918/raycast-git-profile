@@ -7,7 +7,7 @@ interface FormValues {
   email: string;
 }
 
-export default function CreateProfileForm() {
+export default function ProfileForm() {
   const { handleSubmit, itemProps } = useForm<FormValues>({
     async onSubmit(values) {
       const data = await LocalStorage.getItem(values.email);

@@ -1,5 +1,5 @@
-import CreateProfileForm from "@/components/CreateProfileForm";
+import ProfileForm from "@/components/ProfileForm";
 
 export default function Command() {
-  return <CreateProfileForm />;
+  return <ProfileForm />;
 }
