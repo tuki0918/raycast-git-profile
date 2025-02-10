@@ -12,13 +12,23 @@ export default function Command() {
   });
 
   const handleSetProfile = async (profile: Profile) => {
-    // Note: other scopes are not supported in this extension.
-    await setProfile("global", profile);
-    await showToast({
-      style: Toast.Style.Success,
-      title: "Success!",
-      message: `${profile.name} profile applied.`,
-    });
+    const options: Alert.Options = {
+      title: "Are you sure?",
+      message: `This will apply the "${profile.name}" profile. \n(scope: global)`,
+      primaryAction: {
+        title: "Apply",
+        onAction: async () => {
+          // Note: other scopes are not supported in this extension.
+          await setProfile("global", profile);
+          await showToast({
+            style: Toast.Style.Success,
+            title: "Success!",
+            message: `${profile.name} profile applied.`,
+          });
+        },
+      },
+    };
+    await confirmAlert(options);
   };
 
   const handleDeleteProfile = async (profile: Profile) => {
@@ -62,11 +72,12 @@ export default function Command() {
             actions={
               <ActionPanel>
                 <Action.Push
+                  icon={Icon.Bird}
                   title="Edit Profile"
                   target={<ProfileForm id={profile.id} profile={profile} revalidate={revalidate} />}
                 />
-                <Action title="Apply Profile" onAction={() => handleSetProfile(profile)} />
-                <Action title="Delete Profile" onAction={() => handleDeleteProfile(profile)} />
+                <Action icon={Icon.Gear} title="Apply Profile" onAction={() => handleSetProfile(profile)} />
+                <Action icon={Icon.Trash} title="Delete Profile" onAction={() => handleDeleteProfile(profile)} />
               </ActionPanel>
             }
           />
