@@ -28,7 +28,7 @@ export default function Command() {
           accessories={[{ text: "scope" }]}
           key={profile.scope}
           title={profile.scope}
-          icon={Icon.Dot}
+          icon={Icon.Bird}
           detail={
             <List.Item.Detail
               metadata={
