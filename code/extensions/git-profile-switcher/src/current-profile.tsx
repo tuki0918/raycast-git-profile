@@ -2,11 +2,11 @@ import type { GitProfile } from "@/types";
 import { List } from "@raycast/api";
 import { usePromise } from "@raycast/utils";
 import GitProfileListItem from "@/components/GitProfileListItem";
-import { getProfiles } from "@/utils";
+import { getGitProfiles } from "@/utils";
 
 export default function Command() {
   const { isLoading, data } = usePromise(async () => {
-    const profiles = await getProfiles();
+    const profiles = await getGitProfiles();
     const profile = { scope: "local", name: "---", email: "---" } satisfies GitProfile;
     return [...profiles, profile];
   });

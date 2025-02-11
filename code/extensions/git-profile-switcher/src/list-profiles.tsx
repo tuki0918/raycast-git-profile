@@ -3,7 +3,7 @@ import { getAllItems, deleteData } from "@/utils";
 import { usePromise } from "@raycast/utils";
 import type { Profile } from "@/types";
 import ProfileForm from "@/components/ProfileForm";
-import { uniqueKey, setProfile } from "@/utils";
+import { uniqueKey, setGitProfile } from "@/utils";
 
 export default function Command() {
   const { isLoading, data, revalidate } = usePromise(async () => {
@@ -18,7 +18,7 @@ export default function Command() {
         title: "Apply",
         onAction: async () => {
           // Note: other scopes are not supported in this extension.
-          await setProfile("global", profile);
+          await setGitProfile("global", profile);
           await showToast({
             style: Toast.Style.Success,
             title: "Success!",
