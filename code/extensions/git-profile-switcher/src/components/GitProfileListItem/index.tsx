@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { GitProfile } from "@/types";
-import { Action, ActionPanel, Icon, List } from "@raycast/api";
+import { Action, ActionPanel, Color, Icon, List } from "@raycast/api";
 import GitProfileForm from "@/components/GitProfileForm";
 
 type GitProfileListItemProps = {
@@ -27,7 +27,10 @@ export default function GitProfileListItem({ profile, revalidate }: GitProfileLi
       accessories={[{ text: "scope", tooltip: !isEditable ? "readonly" : "" }]}
       key={profile.scope}
       title={profile.scope}
-      icon={Icon.Bird}
+      icon={{
+        source: Icon.Bird,
+        tintColor: isEditable ? Color.Yellow : Color.SecondaryText,
+      }}
       detail={
         <List.Item.Detail
           metadata={

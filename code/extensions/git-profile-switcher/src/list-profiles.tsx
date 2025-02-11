@@ -1,4 +1,4 @@
-import { Alert, Action, ActionPanel, Icon, List, confirmAlert, showToast, Toast } from "@raycast/api";
+import { Alert, Action, ActionPanel, Color, Icon, List, confirmAlert, showToast, Toast } from "@raycast/api";
 import { getAllItems, deleteData } from "@/utils";
 import { usePromise } from "@raycast/utils";
 import type { Profile } from "@/types";
@@ -68,7 +68,10 @@ export default function Command() {
               accessories={[{ text: profile.email }]}
               key={profile.email}
               title={profile.name}
-              icon={Icon.Bird}
+              icon={{
+                source: Icon.Bird,
+                tintColor: Color.Yellow,
+              }}
               actions={
                 <ActionPanel>
                   <Action.Push
