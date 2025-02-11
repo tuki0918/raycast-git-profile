@@ -24,7 +24,7 @@ export default function GitProfileListItem({ profile, revalidate }: GitProfileLi
 
   return (
     <List.Item
-      accessories={[{ text: "scope" }]}
+      accessories={[{ text: "scope", tooltip: !isEditable ? "readonly" : "" }]}
       key={profile.scope}
       title={profile.scope}
       icon={Icon.Bird}
