@@ -5,7 +5,7 @@ import GitProfileListItem from "@/components/GitProfileListItem";
 import { getGitProfiles } from "@/utils";
 
 export default function Command() {
-  const { isLoading, data } = usePromise(async () => {
+  const { isLoading, data, revalidate } = usePromise(async () => {
     const profiles = await getGitProfiles();
     const profile = { scope: "local", name: "---", email: "---" } satisfies GitProfile;
     return [...profiles, profile];
@@ -13,7 +13,7 @@ export default function Command() {
 
   return (
     <List isLoading={isLoading} isShowingDetail searchBarPlaceholder="Select Git scope">
-      {data && data.map((profile) => <GitProfileListItem profile={profile} />)}
+      {data && data.map((profile) => <GitProfileListItem profile={profile} revalidate={revalidate} />)}
     </List>
   );
 }

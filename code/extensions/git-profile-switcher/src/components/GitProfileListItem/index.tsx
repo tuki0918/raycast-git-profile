@@ -1,11 +1,13 @@
 import type { GitProfile } from "@/types";
-import { Icon, List } from "@raycast/api";
+import { Action, ActionPanel, Icon, List } from "@raycast/api";
+import GitProfileForm from "@/components/GitProfileForm";
 
 type GitProfileListItemProps = {
   profile: GitProfile;
+  revalidate?: () => Promise<GitProfile[]>;
 };
 
-export default function GitProfileListItem({ profile }: GitProfileListItemProps) {
+export default function GitProfileListItem({ profile, revalidate }: GitProfileListItemProps) {
   return (
     <List.Item
       accessories={[{ text: "scope" }]}
@@ -24,6 +26,15 @@ export default function GitProfileListItem({ profile }: GitProfileListItemProps)
             </List.Item.Detail.Metadata>
           }
         />
+      }
+      actions={
+        <ActionPanel>
+          <Action.Push
+            icon={Icon.Bird}
+            title="Edit Profile"
+            target={<GitProfileForm scope={profile.scope} profile={profile} revalidate={revalidate} />}
+          />
+        </ActionPanel>
       }
     />
   );
