@@ -1,8 +1,8 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "git-profile-switcher",
-  "title": "Git Profile Switcher",
-  "description": "Switch between Git profiles with ease.",
+  "name": "git-profile",
+  "title": "Git Profile",
+  "description": "Manage and switch between multiple Git profiles.",
   "icon": "extension-icon.png",
   "author": "tuki0918",
   "categories": [
@@ -13,13 +13,13 @@
     {
       "name": "current-profile",
       "title": "Profile",
-      "description": "Show the current Git profile.",
+      "description": "Show the current Git profile",
       "mode": "view"
     },
     {
       "name": "list-profiles",
       "title": "My Profiles",
-      "description": "Manage your Git profiles.",
+      "description": "Manage my profiles",
       "mode": "view"
     }
   ],
