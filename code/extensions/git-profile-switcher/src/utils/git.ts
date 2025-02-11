@@ -15,7 +15,7 @@ export async function getGitProfile(scope: Scope): Promise<GitProfile> {
   return { scope, name, email };
 }
 
-export async function setGitProfile(scope: Scope, value: Profile): Promise<void> {
+export async function setGitProfile(scope: Scope, value: Pick<Profile, "name" | "email">): Promise<void> {
   // Note: Don't use Promise.all here, because file locks can cause conflicts.
   await execPromise(`git config --${scope} user.name "${value.name}"`);
   await execPromise(`git config --${scope} user.email "${value.email}"`);
