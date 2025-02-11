@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { GitProfile } from "@/types";
 import { Action, ActionPanel, Icon, List } from "@raycast/api";
 import GitProfileForm from "@/components/GitProfileForm";
@@ -7,7 +8,20 @@ type GitProfileListItemProps = {
   revalidate?: () => Promise<GitProfile[]>;
 };
 
+const ALLOWED_EDIT_SCOPES = ["global"];
+
 export default function GitProfileListItem({ profile, revalidate }: GitProfileListItemProps) {
+  const isEditable = useMemo(() => ALLOWED_EDIT_SCOPES.includes(profile.scope), [profile.scope]);
+  const actions = isEditable ? (
+    <ActionPanel>
+      <Action.Push
+        icon={Icon.Bird}
+        title="Edit Profile"
+        target={<GitProfileForm scope={profile.scope} profile={profile} revalidate={revalidate} />}
+      />
+    </ActionPanel>
+  ) : undefined;
+
   return (
     <List.Item
       accessories={[{ text: "scope" }]}
@@ -27,15 +41,7 @@ export default function GitProfileListItem({ profile, revalidate }: GitProfileLi
           }
         />
       }
-      actions={
-        <ActionPanel>
-          <Action.Push
-            icon={Icon.Bird}
-            title="Edit Profile"
-            target={<GitProfileForm scope={profile.scope} profile={profile} revalidate={revalidate} />}
-          />
-        </ActionPanel>
-      }
+      actions={actions}
     />
   );
 }
