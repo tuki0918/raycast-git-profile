@@ -38,6 +38,7 @@ export default function GitProfileListItem({ profile, revalidate }: GitProfileLi
               <List.Item.Detail.Metadata.Label title="user.name" text={profile.name || ""} />
               <List.Item.Detail.Metadata.Label title="user.email" text={profile.email || ""} />
               <List.Item.Detail.Metadata.TagList title="scope">
+                {!isEditable && <List.Item.Detail.Metadata.TagList.Item text="readonly" color={Color.SecondaryText} />}
                 <List.Item.Detail.Metadata.TagList.Item text={profile.scope} />
               </List.Item.Detail.Metadata.TagList>
             </List.Item.Detail.Metadata>
