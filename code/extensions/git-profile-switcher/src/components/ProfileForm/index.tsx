@@ -3,7 +3,7 @@ import { useForm, FormValidation } from "@raycast/utils";
 import { setData } from "@/utils";
 import type { Profile } from "@/types";
 
-type ProfileProps = {
+type ProfileFormProps = {
   id: string;
   profile?: Profile;
   revalidate?: () => Promise<Profile[]>;
@@ -14,7 +14,7 @@ type FormValues = {
   email: string;
 };
 
-export default function ProfileForm({ id, profile, revalidate }: ProfileProps) {
+export default function ProfileForm({ id, profile, revalidate }: ProfileFormProps) {
   const { handleSubmit, itemProps } = useForm<FormValues>({
     initialValues: profile,
     async onSubmit(values) {

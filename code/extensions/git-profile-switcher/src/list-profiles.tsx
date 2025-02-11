@@ -1,10 +1,9 @@
-import { execPromise } from "@/lib";
 import { Alert, Action, ActionPanel, Icon, List, confirmAlert, showToast, Toast } from "@raycast/api";
 import { getAllItems, deleteData } from "@/utils";
 import { usePromise } from "@raycast/utils";
-import type { Scope, Profile } from "@/types";
+import type { Profile } from "@/types";
 import ProfileForm from "@/components/ProfileForm";
-import { uniqueKey } from "@/utils";
+import { uniqueKey, setProfile } from "@/utils";
 
 export default function Command() {
   const { isLoading, data, revalidate } = usePromise(async () => {
@@ -86,10 +85,4 @@ export default function Command() {
       </List.Section>
     </List>
   );
-}
-
-async function setProfile(scope: Scope, value: Profile): Promise<void> {
-  // Note: Don't use Promise.all here, because file locks can cause conflicts.
-  await execPromise(`git config --${scope} user.name "${value.name}"`);
-  await execPromise(`git config --${scope} user.email "${value.email}"`);
 }

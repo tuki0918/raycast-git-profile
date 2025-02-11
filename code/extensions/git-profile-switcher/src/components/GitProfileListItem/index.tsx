@@ -1,9 +1,8 @@
-import type { Scope } from "@/types";
+import type { GitProfile } from "@/types";
 import { Icon, List } from "@raycast/api";
 
-export type Profile = { scope: Scope; name?: string | null; email?: string | null };
 type GitProfileListItemProps = {
-  profile: Profile;
+  profile: GitProfile;
 };
 
 export default function GitProfileListItem({ profile }: GitProfileListItemProps) {
