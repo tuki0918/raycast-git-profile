@@ -6,7 +6,7 @@ import { getGitProfiles } from "@/utils";
 
 export default function Command() {
   const { isLoading, data, revalidate } = usePromise(async () => {
-    const profiles = await getGitProfiles();
+    const profiles = await getGitProfiles(["global", "system"]);
     const profile = { scope: "local", name: "---", email: "---" } satisfies GitProfile;
     return [...profiles, profile];
   });
