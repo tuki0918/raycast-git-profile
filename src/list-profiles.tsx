@@ -1,4 +1,4 @@
-import { Alert, Action, ActionPanel, Color, Icon, List, confirmAlert, showToast, Toast } from "@raycast/api";
+import { Alert, Action, ActionPanel, Color, Icon, List, confirmAlert, showToast, Toast, Keyboard } from "@raycast/api";
 import { getAllItems, deleteData } from "@/utils";
 import { usePromise } from "@raycast/utils";
 import type { Profile } from "@/types";
@@ -79,7 +79,13 @@ export default function Command() {
                   target={<ProfileForm id={profile.id} profile={profile} revalidate={revalidate} />}
                 />
                 <Action icon={Icon.Gear} title="Apply Profile" onAction={() => handleSetProfile(profile)} />
-                <Action icon={Icon.Trash} title="Delete Profile" onAction={() => handleDeleteProfile(profile)} />
+                <Action
+                  icon={Icon.Trash}
+                  title="Delete"
+                  onAction={() => handleDeleteProfile(profile)}
+                  style={Action.Style.Destructive}
+                  shortcut={Keyboard.Shortcut.Common.Remove}
+                />
               </ActionPanel>
             }
           />
