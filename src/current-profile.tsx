@@ -13,8 +13,7 @@ export default function Command() {
 
   return (
     <List isLoading={isLoading} isShowingDetail searchBarPlaceholder="Select Git scope">
-      {data &&
-        data.map((profile) => <GitProfileListItem key={profile.scope} profile={profile} revalidate={revalidate} />)}
+      {data?.map((profile) => <GitProfileListItem key={profile.scope} profile={profile} revalidate={revalidate} />)}
     </List>
   );
 }
