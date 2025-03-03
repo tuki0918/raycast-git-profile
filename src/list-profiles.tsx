@@ -51,7 +51,7 @@ export default function Command() {
   };
 
   return (
-    <List isLoading={isLoading} searchBarPlaceholder="Show the list of profiles">
+    <List isLoading={isLoading} searchBarPlaceholder="Search for Git profiles...">
       <List.Item
         title={"Create New Profile"}
         icon={Icon.PlusSquare}
