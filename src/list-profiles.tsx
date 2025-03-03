@@ -78,7 +78,7 @@ export default function Command() {
                   title="Edit Profile"
                   target={<ProfileForm id={profile.id} profile={profile} revalidate={revalidate} />}
                 />
-                <Action icon={Icon.Gear} title="Apply Profile" onAction={() => handleSetProfile(profile)} />
+                <Action icon={Icon.Gear} title="Set Git User" onAction={() => handleSetProfile(profile)} />
                 <Action
                   icon={Icon.Trash}
                   title="Delete"
