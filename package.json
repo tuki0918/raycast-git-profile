@@ -12,14 +12,14 @@
   "commands": [
     {
       "name": "current-profile",
-      "title": "Profile",
-      "description": "Show the current Git profile",
+      "title": "Current User",
+      "description": "Display and change the current Git profile",
       "mode": "view"
     },
     {
       "name": "list-profiles",
-      "title": "My Profiles",
-      "description": "Manage my profiles",
+      "title": "Manage Profiles",
+      "description": "Manage multiple user profiles for Git",
       "mode": "view"
     }
   ],
